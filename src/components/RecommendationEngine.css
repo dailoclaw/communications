@@ -1,0 +1,278 @@
+.recommendation-engine {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.priority-controls {
+  background: #f8fafc;
+  padding: 32px;
+  border-radius: 12px;
+  border: 2px solid var(--border);
+}
+
+.priority-controls h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.controls-desc {
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.priority-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.priority-item label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.priority-label {
+  flex: 1;
+}
+
+.priority-value {
+  background: var(--primary);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--primary);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--primary);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.recommendation-results {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.top-pick {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 3px solid #f59e0b;
+}
+
+.top-pick-header {
+  background: var(--warning);
+  color: white;
+  padding: 20px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-pick-header h2 {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.rec-score {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.top-pick-body {
+  padding: 32px;
+  background: white;
+}
+
+.pick-platform {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--border);
+}
+
+.pick-logo {
+  font-size: 64px;
+}
+
+.pick-platform h3 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+}
+
+.pick-platform p {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 16px;
+}
+
+.pick-reason h4 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--primary);
+}
+
+.pick-reason p {
+  margin-bottom: 16px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.pick-pros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 12px;
+}
+
+.pro-item {
+  padding: 12px 16px;
+  background: #f0fdf4;
+  border-left: 3px solid #16a34a;
+  border-radius: 4px;
+  color: #15803d;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.all-rankings h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.ranking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ranking-card {
+  display: grid;
+  grid-template-columns: 50px 60px 1fr 80px;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: white;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.ranking-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.ranking-card.rank-1 {
+  border-color: #f59e0b;
+  background: linear-gradient(135deg, #fffbeb, white);
+  border-width: 3px;
+}
+
+.rank-number {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.rank-1 .rank-number {
+  color: #f59e0b;
+  font-size: 28px;
+}
+
+.rank-logo {
+  font-size: 40px;
+  text-align: center;
+}
+
+.rank-name {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.rank-tagline {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.rank-score {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--primary);
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .priority-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .top-pick-header {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .pick-platform {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .pick-pros {
+    grid-template-columns: 1fr;
+  }
+
+  .ranking-card {
+    grid-template-columns: 40px 50px 1fr 70px;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .rank-logo {
+    font-size: 32px;
+  }
+}
