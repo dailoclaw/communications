@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { nfrRequirements, platformNFRCompliance } from '../data/nfrData'
+import * as XLSX from 'xlsx'
 import './NFRDetails.css'
 
 export default function NFRDetails({ platforms }) {
@@ -10,6 +11,55 @@ export default function NFRDetails({ platforms }) {
       ...prev,
       [platformName]: !prev[platformName]
     }))
+  }
+
+  const exportToExcel = (platformName) => {
+    const compliance = platformNFRCompliance[platformName]
+    if (!compliance) return
+
+    // Prepare data for Excel
+    const data = []
+    
+    // Add header row
+    data.push(['NFR ID', 'Category', 'Name', 'Description', 'Status', 'Implementation Notes'])
+    
+    // Add each NFR
+    nfrRequirements.forEach(req => {
+      const nfrStatus = compliance[req.id]
+      if (nfrStatus) {
+        data.push([
+          req.id,
+          req.category,
+          req.name,
+          req.description,
+          nfrStatus.status,
+          nfrStatus.note
+        ])
+      }
+    })
+
+    // Create workbook and worksheet
+    const wb = XLSX.utils.book_new()
+    const ws = XLSX.utils.aoa_to_sheet(data)
+    
+    // Set column widths
+    ws['!cols'] = [
+      { wch: 10 },  // NFR ID
+      { wch: 25 },  // Category
+      { wch: 35 },  // Name
+      { wch: 60 },  // Description
+      { wch: 12 },  // Status
+      { wch: 50 }   // Notes
+    ]
+    
+    // Add worksheet to workbook
+    XLSX.utils.book_append_sheet(wb, ws, 'NFR Compliance')
+    
+    // Generate filename
+    const filename = `${platformName.replace(/\s+/g, '_')}_NFR_Compliance.xlsx`
+    
+    // Download file
+    XLSX.writeFile(wb, filename)
   }
 
   const getStatusIcon = (status) => {
@@ -61,23 +111,35 @@ export default function NFRDetails({ platforms }) {
 
         return (
           <div key={platform.id} className="nfr-platform-card">
-            <div 
-              className="nfr-platform-header"
-              onClick={() => togglePlatform(platform.name)}
-            >
-              <div className="platform-title">
-                <span className="platform-logo">{platform.logo}</span>
-                <h3>{platform.name}</h3>
-                <span className="expand-icon">{isExpanded ? '▼' : '▶'}</span>
+            <div className="nfr-platform-header-wrapper">
+              <div 
+                className="nfr-platform-header"
+                onClick={() => togglePlatform(platform.name)}
+              >
+                <div className="platform-title">
+                  <span className="platform-logo">{platform.logo}</span>
+                  <h3>{platform.name}</h3>
+                  <span className="expand-icon">{isExpanded ? '▼' : '▶'}</span>
+                </div>
+                <div className="platform-summary">
+                  <div className="summary-badge met">{metNFRs.length} Met</div>
+                  <div className="summary-badge partial">{partialNFRs.length} Partial</div>
+                  <div className="summary-badge unknown">{unknownNFRs.length} Unknown</div>
+                  {notMetNFRs.length > 0 && (
+                    <div className="summary-badge not-met">{notMetNFRs.length} Not Met</div>
+                  )}
+                </div>
               </div>
-              <div className="platform-summary">
-                <div className="summary-badge met">{metNFRs.length} Met</div>
-                <div className="summary-badge partial">{partialNFRs.length} Partial</div>
-                <div className="summary-badge unknown">{unknownNFRs.length} Unknown</div>
-                {notMetNFRs.length > 0 && (
-                  <div className="summary-badge not-met">{notMetNFRs.length} Not Met</div>
-                )}
-              </div>
+              <button 
+                className="export-button"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  exportToExcel(platform.name)
+                }}
+                title="Export to Excel"
+              >
+                📊 Export Excel
+              </button>
             </div>
 
             {isExpanded && (

@@ -18,20 +18,52 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+.nfr-platform-header-wrapper {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid var(--border);
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+}
+
 .nfr-platform-header {
   padding: 20px 24px;
-  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  border-bottom: 2px solid var(--border);
+  flex: 1;
   transition: background 0.2s ease;
 }
 
-.nfr-platform-header:hover {
+.nfr-platform-header-wrapper:hover .nfr-platform-header {
   background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+}
+
+.export-button {
+  margin-right: 20px;
+  padding: 10px 20px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.export-button:hover {
+  background: var(--secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.export-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .platform-title {
@@ -228,10 +260,15 @@
 }
 
 @media (max-width: 768px) {
+  .nfr-platform-header-wrapper {
+    flex-direction: column;
+  }
+
   .nfr-platform-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
+    width: 100%;
   }
 
   .platform-title {
@@ -241,6 +278,11 @@
   .platform-summary {
     width: 100%;
     justify-content: flex-start;
+  }
+
+  .export-button {
+    width: calc(100% - 40px);
+    margin: 0 20px 20px 20px;
   }
 
   .summary-badge {
