@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { calculateNFRScore } from '../data/nfrData'
 import './RecommendationEngine.css'
 
 export default function RecommendationEngine({ platforms, categories }) {
@@ -6,7 +7,8 @@ export default function RecommendationEngine({ platforms, categories }) {
     recognition: 5,
     mobile: 5,
     budget: 3,
-    integration: 4
+    integration: 4,
+    nfrCompliance: 5
   })
 
   const calculateRecommendation = () => {
@@ -34,6 +36,10 @@ export default function RecommendationEngine({ platforms, categories }) {
       // Integration priority
       score += platform.features.integration.rating * priorities.integration * 2
 
+      // NFR Compliance priority
+      const nfrScore = calculateNFRScore(platform.name)
+      score += (nfrScore.score / 10) * priorities.nfrCompliance * 2
+
       return { ...platform, recommendationScore: Math.round(score) }
     }).sort((a, b) => b.recommendationScore - a.recommendationScore)
   }
@@ -46,7 +52,7 @@ export default function RecommendationEngine({ platforms, categories }) {
       <div className="priority-controls">
         <h3>Adjust Your Priorities</h3>
         <p className="controls-desc">
-          Slide to indicate what matters most to your organization (1=low, 10=critical)
+          Slide to indicate what matters most to your organization (1=low priority, 10=critical priority)
         </p>
 
         <div className="priority-grid">
@@ -103,6 +109,20 @@ export default function RecommendationEngine({ platforms, categories }) {
               max="10"
               value={priorities.integration}
               onChange={(e) => setPriorities({...priorities, integration: Number(e.target.value)})}
+            />
+          </div>
+
+          <div className="priority-item">
+            <label>
+              <span className="priority-label">📋 NFR Compliance</span>
+              <span className="priority-value">{priorities.nfrCompliance}/10</span>
+            </label>
+            <input
+              type="range"
+              min="1"
+              max="10"
+              value={priorities.nfrCompliance}
+              onChange={(e) => setPriorities({...priorities, nfrCompliance: Number(e.target.value)})}
             />
           </div>
         </div>
