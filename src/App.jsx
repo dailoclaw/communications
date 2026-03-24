@@ -125,7 +125,7 @@ function App() {
               <section className="section">
                 <h2>Non-Functional Requirements Assessment</h2>
                 <p className="section-desc">
-                  Detailed compliance analysis against 68 enterprise NFRs across 12 categories
+                  Complete assessment of all 68 enterprise NFRs across 17 categories
                 </p>
                 <div className="nfr-info-box">
                   <h3>📋 What are NFRs?</h3>
@@ -154,7 +154,7 @@ function App() {
       {/* Footer */}
       <footer className="footer">
         <div className="container">
-          <p>Internal Communications Platform Comparison v2.2.0</p>
+          <p>Internal Communications Platform Comparison v3.0.0</p>
           <p className="footer-note">
             Data compiled {new Date().toLocaleDateString()} • Prices are estimates • Contact vendors for official quotes
           </p>
