@@ -6,6 +6,7 @@ import RecommendationEngine from './components/RecommendationEngine'
 import ScoreChart from './components/ScoreChart'
 import PricingComparison from './components/PricingComparison'
 import NFROverview from './components/NFROverview'
+import NFRDetails from './components/NFRDetails'
 import './App.css'
 
 function App() {
@@ -120,22 +121,32 @@ function App() {
           )}
 
           {activeTab === 'nfr' && (
-            <section className="section">
-              <h2>Non-Functional Requirements Assessment</h2>
-              <p className="section-desc">
-                Detailed compliance analysis against 68 enterprise NFRs across 12 categories
-              </p>
-              <div className="nfr-info-box">
-                <h3>📋 What are NFRs?</h3>
-                <p>
-                  Non-Functional Requirements (NFRs) define system qualities like security, performance, availability, 
-                  and data management. They ensure the platform meets enterprise standards beyond just features.
+            <>
+              <section className="section">
+                <h2>Non-Functional Requirements Assessment</h2>
+                <p className="section-desc">
+                  Detailed compliance analysis against 68 enterprise NFRs across 12 categories
                 </p>
-                <p><strong>Categories assessed:</strong> Access Management, Security, Data Protection, Availability, 
-                Performance, Compliance, Integration, and more.</p>
-              </div>
-              <NFROverview platforms={platforms} />
-            </section>
+                <div className="nfr-info-box">
+                  <h3>📋 What are NFRs?</h3>
+                  <p>
+                    Non-Functional Requirements (NFRs) define system qualities like security, performance, availability, 
+                    and data management. They ensure the platform meets enterprise standards beyond just features.
+                  </p>
+                  <p><strong>Categories assessed:</strong> Access Management, Security, Data Protection, Availability, 
+                  Performance, Compliance, Integration, and more.</p>
+                </div>
+                <NFROverview platforms={platforms} />
+              </section>
+
+              <section className="section">
+                <h2>Detailed NFR Compliance by Platform</h2>
+                <p className="section-desc">
+                  Click on each platform to expand and view which specific NFRs are met, partially met, or unknown
+                </p>
+                <NFRDetails platforms={platforms} />
+              </section>
+            </>
           )}
         </div>
       </main>
@@ -143,7 +154,7 @@ function App() {
       {/* Footer */}
       <footer className="footer">
         <div className="container">
-          <p>Internal Communications Platform Comparison v2.0.0</p>
+          <p>Internal Communications Platform Comparison v2.1.0</p>
           <p className="footer-note">
             Data compiled {new Date().toLocaleDateString()} • Prices are estimates • Contact vendors for official quotes
           </p>
