@@ -5,12 +5,46 @@ import './NFRDetails.css'
 
 export default function NFRDetails({ platforms }) {
   const [expandedPlatforms, setExpandedPlatforms] = useState({})
+  const [showCategoryBreakdown, setShowCategoryBreakdown] = useState({})
 
   const togglePlatform = (platformName) => {
     setExpandedPlatforms(prev => ({
       ...prev,
       [platformName]: !prev[platformName]
     }))
+  }
+
+  const toggleCategoryBreakdown = (platformName) => {
+    setShowCategoryBreakdown(prev => ({
+      ...prev,
+      [platformName]: !prev[platformName]
+    }))
+  }
+
+  const getCategoryBreakdown = (platformName) => {
+    const compliance = platformNFRCompliance[platformName]
+    if (!compliance) return {}
+
+    const breakdown = {}
+    
+    nfrRequirements.forEach(req => {
+      const nfrStatus = compliance[req.id]
+      if (nfrStatus) {
+        if (!breakdown[req.category]) {
+          breakdown[req.category] = { met: 0, partial: 0, unknown: 0, notMet: 0, total: 0 }
+        }
+        breakdown[req.category].total++
+        
+        switch(nfrStatus.status) {
+          case 'Met': breakdown[req.category].met++; break
+          case 'Partial': breakdown[req.category].partial++; break
+          case 'Unknown': breakdown[req.category].unknown++; break
+          case 'Not Met': breakdown[req.category].notMet++; break
+        }
+      }
+    })
+
+    return breakdown
   }
 
   const exportToExcel = (platformName) => {
@@ -144,6 +178,67 @@ export default function NFRDetails({ platforms }) {
 
             {isExpanded && (
               <div className="nfr-platform-body">
+                <div className="category-breakdown-toggle">
+                  <button 
+                    className="breakdown-toggle-btn"
+                    onClick={() => toggleCategoryBreakdown(platform.name)}
+                  >
+                    {showCategoryBreakdown[platform.name] ? '📊 Hide' : '📊 Show'} Category Breakdown
+                  </button>
+                </div>
+
+                {showCategoryBreakdown[platform.name] && (
+                  <div className="category-breakdown-section">
+                    <h4 className="breakdown-title">NFR Compliance by Category</h4>
+                    <div className="category-breakdown-grid">
+                      {Object.entries(getCategoryBreakdown(platform.name))
+                        .sort((a, b) => a[0].localeCompare(b[0]))
+                        .map(([category, stats]) => {
+                          const complianceRate = Math.round((stats.met / stats.total) * 100)
+                          return (
+                            <div key={category} className="category-breakdown-card">
+                              <div className="category-breakdown-header">
+                                <span className="category-breakdown-name">{category}</span>
+                                <span className="category-breakdown-total">({stats.total} NFRs)</span>
+                              </div>
+                              <div className="category-breakdown-bar">
+                                <div 
+                                  className="bar-segment bar-met" 
+                                  style={{ width: `${(stats.met / stats.total) * 100}%` }}
+                                  title={`${stats.met} Met`}
+                                />
+                                <div 
+                                  className="bar-segment bar-partial" 
+                                  style={{ width: `${(stats.partial / stats.total) * 100}%` }}
+                                  title={`${stats.partial} Partial`}
+                                />
+                                <div 
+                                  className="bar-segment bar-unknown" 
+                                  style={{ width: `${(stats.unknown / stats.total) * 100}%` }}
+                                  title={`${stats.unknown} Unknown`}
+                                />
+                                {stats.notMet > 0 && (
+                                  <div 
+                                    className="bar-segment bar-not-met" 
+                                    style={{ width: `${(stats.notMet / stats.total) * 100}%` }}
+                                    title={`${stats.notMet} Not Met`}
+                                  />
+                                )}
+                              </div>
+                              <div className="category-breakdown-stats">
+                                <span className="stat-item stat-met">✅ {stats.met}</span>
+                                {stats.partial > 0 && <span className="stat-item stat-partial">⚠️ {stats.partial}</span>}
+                                {stats.unknown > 0 && <span className="stat-item stat-unknown">❓ {stats.unknown}</span>}
+                                {stats.notMet > 0 && <span className="stat-item stat-not-met">❌ {stats.notMet}</span>}
+                                <span className="stat-item stat-rate">{complianceRate}%</span>
+                              </div>
+                            </div>
+                          )
+                        })}
+                    </div>
+                  </div>
+                )}
+
                 {metNFRs.length > 0 && (
                   <div className="nfr-status-group">
                     <h4 className="status-group-title met">
