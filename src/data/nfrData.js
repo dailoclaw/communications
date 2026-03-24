@@ -28,10 +28,10 @@ export const platformNFRCompliance = {
     
     // Continuity & Resilience (5)
     'NFR-13': { status: 'Met', note: 'Data export and migration tools provided' },
-    'NFR-14': { status: 'Partial', note: '30-day recovery standard, extended available' },
-    'NFR-15': { status: 'Met', note: 'RTO 4hrs, RPO 1hr - Full recovery capability documented with <24hr data loss tolerance' },
-    'NFR-16': { status: 'Met', note: 'ISO 27001 certified DR testing' },
-    'NFR-17': { status: 'Partial', note: 'API export available, no native 3rd party backup' },
+    'NFR-14': { status: 'Partial', note: '30-day recovery standard, 90-day available on request' },
+    'NFR-15': { status: 'Met', note: 'RTO 4hrs, RPO 1hr - RPO <24hr data loss tolerance documented' },
+    'NFR-16': { status: 'Met', note: 'Business continuity and DR plans tested annually, ISO 27001 certified' },
+    'NFR-17': { status: 'Partial', note: 'API export available, native 3rd party backup APIs limited' },
     
     // Data (7)
     'NFR-19': { status: 'Met', note: 'GDPR compliant data deletion process' },
@@ -132,10 +132,10 @@ export const platformNFRCompliance = {
     
     // Continuity & Resilience (5)
     'NFR-13': { status: 'Met', note: 'Data portability and export tools' },
-    'NFR-14': { status: 'Met', note: '90-day point-in-time recovery' },
-    'NFR-15': { status: 'Met', note: 'RTO/RPO defined in enterprise SLA with <24hr data loss protection' },
-    'NFR-16': { status: 'Met', note: 'Annual DR testing documented' },
-    'NFR-17': { status: 'Partial', note: 'GraphQL API for export' },
+    'NFR-14': { status: 'Met', note: '90-day point-in-time recovery supported' },
+    'NFR-15': { status: 'Met', note: 'RTO/RPO defined in enterprise SLA - RPO <24hr documented' },
+    'NFR-16': { status: 'Met', note: 'Business continuity management with annual DR testing' },
+    'NFR-17': { status: 'Partial', note: 'GraphQL API for data export, 3rd party backup via API' },
     
     // Data (7)
     'NFR-19': { status: 'Met', note: 'Secure data deletion protocol' },
@@ -236,10 +236,10 @@ export const platformNFRCompliance = {
     
     // Continuity & Resilience (5)
     'NFR-13': { status: 'Partial', note: 'Data export available, migration support limited' },
-    'NFR-14': { status: 'Unknown', note: 'Recovery capabilities not publicly documented' },
-    'NFR-15': { status: 'Partial', note: 'RTO/RPO documented but specific recovery objectives not publicly detailed' },
-    'NFR-16': { status: 'Unknown', note: 'DR testing not publicly documented' },
-    'NFR-17': { status: 'Unknown', note: 'Third-party backup support unclear' },
+    'NFR-14': { status: 'Unknown', note: 'Point-in-time recovery capabilities not publicly documented' },
+    'NFR-15': { status: 'Partial', note: 'RTO/RPO documented but RPO <24hr not specifically confirmed' },
+    'NFR-16': { status: 'Unknown', note: 'Service continuity and DR testing not publicly documented' },
+    'NFR-17': { status: 'Unknown', note: 'Third-party backup API support unclear' },
     
     // Data (7)
     'NFR-19': { status: 'Met', note: 'GDPR compliant exit process' },
@@ -340,10 +340,10 @@ export const platformNFRCompliance = {
     
     // Continuity & Resilience (5)
     'NFR-13': { status: 'Met', note: 'Microsoft data portability tools' },
-    'NFR-14': { status: 'Met', note: '14-day deletion recovery window' },
-    'NFR-15': { status: 'Met', note: 'Enterprise-grade RTO/RPO - Microsoft 365 SLA guarantees <24hr data loss, rapid recovery' },
-    'NFR-16': { status: 'Met', note: 'SOC 2 Type II certified DR' },
-    'NFR-17': { status: 'Met', note: 'Microsoft Graph API backup support' },
+    'NFR-14': { status: 'Met', note: 'Point-in-time recovery up to 90 days via retention policies' },
+    'NFR-15': { status: 'Met', note: 'Enterprise RTO/RPO - M365 SLA <24hr RPO, documented recovery objectives' },
+    'NFR-16': { status: 'Met', note: 'Business continuity certified - SOC 2 Type II with annual DR testing' },
+    'NFR-17': { status: 'Met', note: 'Microsoft Graph API and 3rd party backup solutions supported' },
     
     // Data (7)
     'NFR-19': { status: 'Met', note: 'Microsoft secure deletion standards' },
@@ -444,10 +444,10 @@ export const platformNFRCompliance = {
     
     // Continuity & Resilience (5)
     'NFR-13': { status: 'Partial', note: 'Export tools, migration services extra' },
-    'NFR-14': { status: 'Partial', note: '30-day recovery standard' },
-    'NFR-15': { status: 'Met', note: 'RTO/RPO defined in enterprise SLA with recovery procedures documented' },
-    'NFR-16': { status: 'Met', note: 'SOC 2 Type II with DR testing' },
-    'NFR-17': { status: 'Partial', note: 'API export, no native 3rd party' },
+    'NFR-14': { status: 'Partial', note: 'Point-in-time recovery to 30 days, extended on request' },
+    'NFR-15': { status: 'Met', note: 'RTO/RPO defined in enterprise SLA - RPO <24hr documented' },
+    'NFR-16': { status: 'Met', note: 'Service continuity management with SOC 2 Type II DR testing' },
+    'NFR-17': { status: 'Partial', note: 'API data export, 3rd party backup support limited' },
     
     // Data (7)
     'NFR-19': { status: 'Met', note: 'Data deletion and exit process' },
