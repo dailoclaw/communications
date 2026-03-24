@@ -17,7 +17,7 @@ function App() {
         <div className="container">
           <h1>🏢 Internal Communications Platform Comparison</h1>
           <p className="subtitle">
-            Comprehensive analysis for 1,800 deskless workers across your organization
+            Comprehensive analysis for 2,650 employees (1,987 deskless workers)
           </p>
         </div>
       </header>
@@ -88,9 +88,9 @@ function App() {
             <section className="section">
               <h2>Pricing Comparison</h2>
               <p className="section-desc">
-                Estimated costs for 1,800 employees (contact vendors for exact quotes)
+                Estimated costs for 2,650 employees (contact vendors for exact quotes)
               </p>
-              <PricingComparison platforms={platforms} employeeCount={1800} />
+              <PricingComparison platforms={platforms} employeeCount={2650} />
             </section>
           )}
 
@@ -109,7 +109,7 @@ function App() {
       {/* Footer */}
       <footer className="footer">
         <div className="container">
-          <p>Internal Communications Platform Comparison v1.0.0</p>
+          <p>Internal Communications Platform Comparison v1.1.0</p>
           <p className="footer-note">
             Data compiled {new Date().toLocaleDateString()} • Prices are estimates • Contact vendors for official quotes
           </p>

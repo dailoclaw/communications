@@ -21,8 +21,8 @@ export default function PricingComparison({ platforms, employeeCount }) {
   return (
     <div className="pricing-comparison">
       <div className="pricing-note">
-        <strong>⚠️ Important Note:</strong> All prices are estimates based on {employeeCount.toLocaleString()} employees. 
-        Contact vendors directly for accurate quotes. Most platforms offer volume discounts.
+        <strong>⚠️ Important Note:</strong> All prices are estimates based on {employeeCount.toLocaleString()} total employees ({Math.round(employeeCount * 0.75).toLocaleString()} deskless workers). 
+        Contact vendors directly for accurate quotes. Most platforms offer volume discounts for large deployments.
       </div>
 
       <div className="pricing-grid">
