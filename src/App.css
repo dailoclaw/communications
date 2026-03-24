@@ -147,6 +147,31 @@ body {
   opacity: 0.8;
 }
 
+/* NFR Info Box */
+.nfr-info-box {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border: 2px solid #2563eb;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 32px;
+}
+
+.nfr-info-box h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0 0 12px 0;
+}
+
+.nfr-info-box p {
+  margin: 0 0 12px 0;
+  line-height: 1.6;
+}
+
+.nfr-info-box p:last-child {
+  margin-bottom: 0;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .header h1 {

@@ -5,6 +5,7 @@ import FeatureMatrix from './components/FeatureMatrix'
 import RecommendationEngine from './components/RecommendationEngine'
 import ScoreChart from './components/ScoreChart'
 import PricingComparison from './components/PricingComparison'
+import NFROverview from './components/NFROverview'
 import './App.css'
 
 function App() {
@@ -50,6 +51,12 @@ function App() {
             >
               🎯 Recommendation
             </button>
+            <button 
+              className={`tab ${activeTab === 'nfr' ? 'active' : ''}`}
+              onClick={() => setActiveTab('nfr')}
+            >
+              📋 NFR Compliance
+            </button>
           </div>
         </div>
       </nav>
@@ -70,6 +77,14 @@ function App() {
               <section className="section">
                 <h2>Platform Comparison Table</h2>
                 <ComparisonTable platforms={platforms} />
+              </section>
+
+              <section className="section">
+                <h2>Non-Functional Requirements (NFR) Compliance</h2>
+                <p className="section-desc">
+                  Assessment of how each platform meets enterprise NFR standards
+                </p>
+                <NFROverview platforms={platforms} />
               </section>
             </>
           )}
@@ -103,13 +118,32 @@ function App() {
               <RecommendationEngine platforms={platforms} categories={featureCategories} />
             </section>
           )}
+
+          {activeTab === 'nfr' && (
+            <section className="section">
+              <h2>Non-Functional Requirements Assessment</h2>
+              <p className="section-desc">
+                Detailed compliance analysis against 68 enterprise NFRs across 12 categories
+              </p>
+              <div className="nfr-info-box">
+                <h3>📋 What are NFRs?</h3>
+                <p>
+                  Non-Functional Requirements (NFRs) define system qualities like security, performance, availability, 
+                  and data management. They ensure the platform meets enterprise standards beyond just features.
+                </p>
+                <p><strong>Categories assessed:</strong> Access Management, Security, Data Protection, Availability, 
+                Performance, Compliance, Integration, and more.</p>
+              </div>
+              <NFROverview platforms={platforms} />
+            </section>
+          )}
         </div>
       </main>
 
       {/* Footer */}
       <footer className="footer">
         <div className="container">
-          <p>Internal Communications Platform Comparison v1.1.0</p>
+          <p>Internal Communications Platform Comparison v2.0.0</p>
           <p className="footer-note">
             Data compiled {new Date().toLocaleDateString()} • Prices are estimates • Contact vendors for official quotes
           </p>
