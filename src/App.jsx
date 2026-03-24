@@ -154,7 +154,7 @@ function App() {
       {/* Footer */}
       <footer className="footer">
         <div className="container">
-          <p>Internal Communications Platform Comparison v3.0.0</p>
+          <p>Internal Communications Platform Comparison v3.0.1</p>
           <p className="footer-note">
             Data compiled {new Date().toLocaleDateString()} • Prices are estimates • Contact vendors for official quotes
           </p>
